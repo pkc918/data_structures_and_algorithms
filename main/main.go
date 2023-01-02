@@ -3,6 +3,7 @@ package main
 import (
 	"data_structures_and_algorithms/cycleQueue"
 	"data_structures_and_algorithms/queue"
+	"data_structures_and_algorithms/stack"
 	"fmt"
 )
 
@@ -91,4 +92,44 @@ func main() {
 	}
 	fmt.Print("出队后的队列：")
 	myCycleQueue.TraversalQueue()
+
+	// Stack
+	fmt.Println("===== Stack =====")
+	myStack := &stack.Stack{
+		MaxSize: 5,
+		Top:     -1,
+	}
+	fmt.Print("Push前的Stack：")
+	myStack.Traversal()
+	for i := 0; i < 5; i++ {
+		err = myStack.Push(i + 1)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+	fmt.Print("Push后的Stack：")
+	myStack.Traversal()
+	fmt.Println()
+	err = myStack.Push(7)
+	if err != nil {
+		fmt.Println(err)
+	}
+	stackHead, err := myStack.Pop()
+	fmt.Println("StackHead: ", stackHead)
+	if err != nil {
+		fmt.Println(err)
+		//return
+	}
+	fmt.Println()
+	myStack.Traversal()
+	fmt.Println()
+	for i := 0; i < 5; i++ {
+		stackHead, err := myStack.Pop()
+		if err != nil {
+			fmt.Println(err)
+			//return
+		}
+		fmt.Println("StackHead: ", stackHead)
+	}
+	myStack.Traversal()
 }
