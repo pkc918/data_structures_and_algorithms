@@ -2,6 +2,7 @@ package main
 
 import (
 	"data_structures_and_algorithms/cycleQueue"
+	"data_structures_and_algorithms/linkList"
 	"data_structures_and_algorithms/queue"
 	"data_structures_and_algorithms/stack"
 	"fmt"
@@ -132,4 +133,21 @@ func main() {
 		fmt.Println("StackHead: ", stackHead)
 	}
 	myStack.Traversal()
+
+	// linkList
+	fmt.Println("===== linkList =====")
+	head := &linkList.LinkList{}
+	myLinkList := &linkList.LinkList{
+		Val:  0,
+		Next: nil,
+	}
+	head.Next = myLinkList
+	fmt.Println("初始化链表")
+	head.TraversalLink()
+	head.ListInsert(1)
+	fmt.Println("插入链表")
+	head.TraversalLink()
+	//myLinkList.ListInsert(1)
+	//fmt.Println()
+	//myLinkList.TraversalLink()
 }
