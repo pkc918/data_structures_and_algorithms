@@ -142,12 +142,31 @@ func main() {
 		Next: nil,
 	}
 	head.Next = myLinkList
+	fmt.Println("链表长度：", head.ListLength())
 	fmt.Println("初始化链表")
 	head.TraversalLink()
-	head.ListInsert(1)
+	head.ListPush(1)
 	fmt.Println("插入链表")
 	head.TraversalLink()
-	//myLinkList.ListInsert(1)
-	//fmt.Println()
-	//myLinkList.TraversalLink()
+	fmt.Println()
+	fmt.Println("链表长度：", head.ListLength())
+	fmt.Println("将 8 插入首节点")
+	err = head.ListInsert(0, 8)
+	if err != nil {
+		fmt.Println(err)
+	}
+	head.TraversalLink()
+	fmt.Println("链表长度：", head.ListLength())
+	fmt.Println("将 9 插入最后")
+	err = head.ListInsert(head.ListLength(), 9)
+	if err != nil {
+		fmt.Println(err)
+	}
+	head.TraversalLink()
+	fmt.Println("删除第0个元素")
+	err = head.ListDelete(0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	head.TraversalLink()
 }
