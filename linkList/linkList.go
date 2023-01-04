@@ -1,14 +1,17 @@
 package linkList
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type LinkList struct {
 	Val  int
 	Next *LinkList
 }
 
-// ListInsert 插入 head，第i个，值为 val
-func (linkList *LinkList) ListInsert(val int) {
+// ListPush 插入节点， 值为 val
+func (linkList *LinkList) ListPush(val int) {
 	temp := linkList
 	for {
 		if temp.Next == nil {
@@ -22,7 +25,49 @@ func (linkList *LinkList) ListInsert(val int) {
 	}
 }
 
-// 打印链表
+// ListInsert 中间插入元素 第i个， 值为 val
+func (linkList *LinkList) ListInsert(i int, val int) (err error) {
+	if i > linkList.ListLength() || i < 0 {
+		return errors.New("the index exceeds the length")
+	}
+	temp := linkList
+	for i > 0 {
+		i--
+		temp = temp.Next
+	}
+	temp.Next = &LinkList{Val: val, Next: temp.Next}
+	return nil
+}
+
+// ListDelete 中间删除元素 第i个
+func (linkList *LinkList) ListDelete(i int) (err error) {
+	if i > linkList.ListLength() || i < 0 {
+		return errors.New("the index exceeds the length")
+	}
+	temp := linkList
+	for i > 0 {
+		i--
+		temp = temp.Next
+	}
+	temp.Next = temp.Next.Next
+	return nil
+}
+
+// ListLength 获取链表长度
+func (linkList *LinkList) ListLength() (length int) {
+	temp := linkList
+	length = 0
+	for {
+		temp = temp.Next
+		length++
+		if temp.Next == nil {
+			break
+		}
+	}
+	return length
+}
+
+// TraversalLink 打印链表
 func (linkList *LinkList) TraversalLink() {
 	temp := linkList
 	index := 1
