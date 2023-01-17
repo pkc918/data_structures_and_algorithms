@@ -1,6 +1,7 @@
 package main
 
 import (
+	"data_structures_and_algorithms/circleLink"
 	"data_structures_and_algorithms/cycleQueue"
 	"data_structures_and_algorithms/linkList"
 	"data_structures_and_algorithms/queue"
@@ -169,4 +170,25 @@ func main() {
 		fmt.Println(err)
 	}
 	head.TraversalLink()
+
+	// circleLink
+	fmt.Println("===== circleLink =====")
+	myCircleLink := &circleLink.CircleLink{}
+	fmt.Printf("长度：%d", myCircleLink.Length())
+	fmt.Println()
+	myCircleLink.TraversalCircleLink()
+	myCircleLink.InsertNode(1)
+	myCircleLink.InsertNode(2)
+	myCircleLink.InsertNode(3)
+	myCircleLink.TraversalCircleLink()
+	fmt.Printf("长度：%d", myCircleLink.Length())
+	err = myCircleLink.DeNode(0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	myCircleLink.TraversalCircleLink()
+	err = myCircleLink.DeNode(3)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
